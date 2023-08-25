@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="log.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+
+        <header class="Shop">
+            <img class="imagelogo"src="images\image-removebg-preview.png" alt="image">
+            <div class="title">
+            <h1 >Petshop</h1>
+        </div>
+        
+        <nav class="nav">
+            <ul>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="Shop.html">Shop</a>
+                <a href="login.html">Log in</a>
+            </ul>
+        </nav>
+        
+    </header>
+    <div class="container">
+        
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" onclick="submitData()">Login</button>
+            </form>
+    </div>
+    <script>
+        async function submitData(){
+            const username = document.getElementById("username").value;
+            const password = document.getElementById('password').value;
+            console.log(username, password)
+            axios.post("http://localhost:8080/login", {
+                username,password
+            }).then(function(response){
+                console.log(response)
+                alert(response.data.data)
+                window.location("./index.html")
+            })
+            .catch(function(error){
+                console.log(error)
+                window.location("./index.html")
+
+            })
+        }
+    </script>
+</body>
+</html>

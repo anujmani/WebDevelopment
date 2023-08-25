@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.top{
+    background-color: bisque;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nav {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-right: 50px;
+    justify-content: space-between  
+}
+body {
+    background-image: url('images/DogTemp.png');
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    margin: 10; /* Reset default margin to ensure full coverage */
+}
+.nav a{
+    color: orange;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px;
+    text-decoration: none;    
+}
+.nav a:hover{
+    background: var(--text-color);
+    color: black;
+}
+h1{
+    color: orange;
+}
+p{
+    color: peru;
+}
+.imagelogo{
+    height: 50px;
+    width: 90px;
+    margin-left: 25px;
+}
+.text{
+    font-size: 150%;
+    display: flex;
+    justify-content: start;
+    margin: 80px;
+    padding: 100px;
+
+}
+.main{
+    font-family: cursive;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #e68300;
+}
