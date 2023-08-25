@@ -1,20 +1,22 @@
 const express = require("express");
-const sequelize = require("./database");
-const userRouter = require("./views/route/userRoute");
+const userRouter = require("./route/userRoute");
 const app = express();
+const cors = require("cors");
 
-app.use(express.json())
+app.use(express.json());
 
-app.set("view engine", "ejs")
+app.use(cors());
+
+app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-    res.render("index")
-})
+  res.render("index");
+});
 
-app.use(express.static("views"))
+app.use(express.static("views"));
 
-app.use(userRouter)
+app.use("/", userRouter);
 
-app.listen(8080, ()=> {
-    console.log("Listening to http://localhost:8080")
-})
+app.listen(8000, () => {
+  console.log("Listening to http://localhost:8000");
+});
