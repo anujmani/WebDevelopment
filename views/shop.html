@@ -48,10 +48,11 @@
 <script>
     displaycart()
     async function displaycart() {
-    let j = 0;
+    let total = 0;
     const response = await axios.get("http://localhost:8080/cart");
     const getCart = response.data;
-    let total = getCart.map((item) => item.price).reduce((a, c) => a + c);
+    if(getCart.length > 0)
+    total = getCart.map((item) => item.price).reduce((a, c) => a + c);
     if (getCart.length == 0) {
         document.getElementById("cartItem").innerHTML = "Your cart is empty";
         document.getElementById("total").innerHTML = "$" + 0;
@@ -65,12 +66,22 @@
                     <p style-'font-size:12px;'>${items.product_name}</p>
                     <h2 style='font-size: 15px;'>${items.price}</h2>` +
             "<button style='background-color: red; height:25px;' onclick='delElement(" +
-            j++ +
+            items.id +  
             ")'>Remove</button></div>"
             );
         })
         .join("");
     }
+    }
+    function delElement(id) {
+        console.log(id)
+        axios.delete(`http://localhost:8080/cart/${id}`).
+        then(function(response){
+            window.location.reload()
+        }).then(function(err){
+            console.log(err)
+            // alert(err)
+        })
     }
 </script>
 </body>

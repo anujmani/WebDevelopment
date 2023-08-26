@@ -91,5 +91,3 @@ function addtocart(a) {
   cart.push({ ...categories[a] });
   displaycart();
 }
-
-function delElement() {}

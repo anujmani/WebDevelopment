@@ -20,4 +20,17 @@ async function getCart(req, res) {
   }
 }
 
-module.exports = { addCart, getCart };
+async function deleteCart(req, res) {
+  try {
+    await CartModel.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).send("Removed");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
+module.exports = { addCart, getCart, deleteCart };
