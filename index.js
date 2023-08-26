@@ -2,6 +2,7 @@ const express = require("express");
 const userRouter = require("./route/userRoute");
 const app = express();
 const cors = require("cors");
+const cartRouter = require("./route/cartRoute");
 
 app.use(express.json());
 
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
 app.use(express.static("views"));
 
 app.use("/", userRouter);
+
+app.use("/cart", cartRouter);
 
 app.listen(8080, () => {
   console.log("Listening to http://localhost:8080");

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
     <link rel="stylesheet" href="shop.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>'
 </head>
 <body>
     <div class="main">
@@ -35,7 +36,7 @@
               <p>My cart</p>
                    </div>    
             </div>
-            <div id="cartItem"> Your cart is empty</div>
+            <div id="cartItem" style="margin-bottom: 25px;"> Your cart is empty</div>
             <div class="foot">
                 <h3>Total</h3>
                 <h2 id="total">$0.00</h2>
@@ -44,5 +45,33 @@
     </div>
 </div>
 </div>
+<script>
+    displaycart()
+    async function displaycart() {
+    let j = 0;
+    const response = await axios.get("http://localhost:8080/cart");
+    const getCart = response.data;
+    let total = getCart.map((item) => item.price).reduce((a, c) => a + c);
+    if (getCart.length == 0) {
+        document.getElementById("cartItem").innerHTML = "Your cart is empty";
+        document.getElementById("total").innerHTML = "$" + 0;
+    } else {
+        document.getElementById("cartItem").innerHTML = getCart
+        .map((items) => {
+            document.getElementById("total").innerHTML = "$" + total;
+            return (
+            `<div class='cart-item' style="gap:25px; display:flex; flex-direction:row">
+
+                    <p style-'font-size:12px;'>${items.product_name}</p>
+                    <h2 style='font-size: 15px;'>${items.price}</h2>` +
+            "<button style='background-color: red; height:25px;' onclick='delElement(" +
+            j++ +
+            ")'>Remove</button></div>"
+            );
+        })
+        .join("");
+    }
+    }
+</script>
 </body>
 </html>
